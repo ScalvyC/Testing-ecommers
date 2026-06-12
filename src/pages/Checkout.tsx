@@ -1,6 +1,6 @@
 import { CartItem } from "../components/CartItem";
+import { useShoppingCart } from "../context/shopping";
 import "./Checkout.css";
-import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export function Checkout() {
   const { cartItems } = useShoppingCart();

@@ -1,16 +1,16 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-export type CartItem = {
+export type ICartItem = {
   id: number;
   quantity: number;
 };
 
-type CartState = {
-  cartItems: CartItem[];
+type ICartState = {
+  cartItems: ICartItem[];
   isOpen: boolean;
 };
 
-const initialState: CartState = {
+const initialState: ICartState = {
   cartItems: [],
   isOpen: false,
 };
