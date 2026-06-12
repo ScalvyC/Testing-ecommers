@@ -46,8 +46,14 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
               }, 0),
             )}
           </div>
-          <div className="checkout-btn">
-            <NavLink to="/Checkout">Proceed to Checkout</NavLink>
+          <div>
+            {cartItems.length > 0 ? (
+              <NavLink to="/Checkout" className="checkout-btn">
+                Proceed to Checkout
+              </NavLink>
+            ) : (
+              <p>Your cart is empty</p>
+            )}
           </div>
         </Stack>
       </Offcanvas.Body>
