@@ -1,0 +1,237 @@
+.navbar-main {
+  background-color: white;
+  padding: 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+}
+
+.row1 {
+  width: 100%;
+  height: 90px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.row1-column1 {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 20px;
+}
+
+.row1-column2 {
+  width: 230px;
+  background-color: #f8b400;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row1-column2 h1 {
+  margin: 0;
+  color: #111;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.row1-column3 {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.row1-column1-section1 {
+  height: 45px;
+  border-bottom: 1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 35px;
+}
+
+.row1-column1-section1 p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #555;
+}
+
+.row1-column1-section2 {
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 55px;
+}
+
+.row1-column3-section1 {
+  height: 45px;
+  border-bottom: 1px solid #eeeeee;
+  padding: 0 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row1-column3-section1 p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #555;
+}
+
+/* 
+  ROW 1, COLUMN 3, SECTION 2
+  Bottom-right text and icons.
+*/
+.row1-column3-section2 {
+  height: 45px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Existing clickable page links */
+.nav-link-item {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-link-item:hover {
+  color: #f8b400;
+}
+
+.nav-link-item.active {
+  color: #111;
+}
+
+.nav-link-item.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -14px;
+
+  width: 100%;
+  height: 3px;
+  background-color: #f8b400;
+}
+
+/* Normal text that is not a route */
+.normal-text {
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.normal-text:hover {
+  color: #f8b400;
+}
+
+/* Login and register area */
+.login-register {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Right bottom text */
+.right-nav-text {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+/* Icons on the right */
+.right-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-text,
+.heart-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #f7f7f7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.icon-text:hover {
+  color: #f8b400;
+}
+
+.heart-icon {
+  background-color: #17203a;
+  color: white;
+}
+
+.heart-icon:hover {
+  color: #f8b400;
+}
+
+/* Cart */
+.cart-wrapper {
+  position: relative;
+}
+
+.cart-button {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+
+  background-color: #f7f7f7;
+  color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+.cart-button:hover {
+  background-color: #eeeeee;
+  color: #f8b400;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -7px;
+  right: -5px;
+
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+
+  background-color: #f8b400;
+  color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 0.7rem;
+  font-weight: bold;
+}

@@ -1,0 +1,78 @@
+.store-item-card {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  background-color: white;
+  border-radius: 4px;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.store-item-img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  background-color: #eeeeee;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.store-item-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.store-item-add-btn {
+  width: 100%;
+  background-color: #f8b400;
+  color: #111;
+  border: none;
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.store-item-add-btn:hover {
+  background-color: #111;
+  color: white;
+}
+
+.store-item-quantity-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.store-item-quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.store-item-quantity-controls button {
+  background-color: #f8b400;
+  border: none;
+  color: #111;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.store-item-quantity-controls button:hover {
+  background-color: #111;
+  color: white;
+}
+
+.store-item-quantity-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+}

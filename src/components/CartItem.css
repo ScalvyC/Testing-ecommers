@@ -1,0 +1,53 @@
+.store-item {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+.store-item-quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.store-item-quantity-btn {
+  width: 32px;
+  height: 32px;
+  background-color: #eeeeee;
+  color: #111;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.store-item-quantity-btn:hover {
+  background-color: #111;
+  color: white;
+}
+
+.store-item-quantity-number {
+  min-width: 28px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.store-item-remove-btn {
+  margin-left: auto;
+  border: none;
+  border-radius: 5px;
+  background-color: #f8b400;
+  color: #111;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.store-item-remove-btn:hover {
+  background-color: #111;
+  color: white;
+}

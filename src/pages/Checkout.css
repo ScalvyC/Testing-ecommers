@@ -1,0 +1,129 @@
+.checkout-page {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+.cart-items-wrapper,
+.payment-section-wrapper {
+  flex: 1;
+  display: flex;
+  max-height: 800px;
+}
+
+.cart-items,
+.payment-section {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2rem;
+  border: 1px solid #ececec;
+  width: 100%;
+  position: relative;
+}
+
+.cart-items {
+  max-height: 800px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.cart-items::-webkit-scrollbar {
+  display: none;
+}
+
+.checkout-h1 {
+  position: sticky;
+  top: -33px;
+  z-index: 10;
+  background-color: rgb(248, 180, 0);
+  margin: -2rem -2rem 2rem -2rem;
+  padding: 1.5rem 2rem;
+  border-radius: 24px 24px 0 0;
+}
+
+.checkout-h1 h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.payment-options-1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.payment-options-1 h5 {
+  cursor: pointer;
+  color: #111;
+  padding-bottom: 0.5rem;
+  transition: 0.2s;
+  margin: 0;
+}
+
+.payment-options-1 h5:hover {
+  border-bottom: 3px solid rgb(248, 180, 0);
+}
+
+.payment-options-2 ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.payment-options-2 li {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: 0.2s;
+}
+
+.payment-options-2 li:focus,
+.payment-options-2 li:hover {
+  border-color: #d4af37;
+  background: #fff9e9;
+}
+
+.form-row-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.payment-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.payment-form label {
+  font-size: 0.9rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.payment-form input {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.payment-form input[type="submit"] {
+  background: rgb(248, 180, 0);
+  color: black;
+  font-size: medium;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}

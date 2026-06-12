@@ -1,0 +1,35 @@
+.store-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.store-card {
+  width: calc((100% - 2rem) / 3);
+}
+
+.loader-container {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  display: flex;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid rgb(248, 180, 0);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
