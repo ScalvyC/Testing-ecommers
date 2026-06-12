@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { dummyJsonApi } from "./services/dummyJsonApi";
-import cartReducer, { type CartItem } from "./features/cart/cartSlice";
+import cartReducer, { type ICartItem } from "./features/cart/cartSlice";
 
 const CART_STORAGE_KEY = "shopping-cart";
 
-function loadCartItems(): CartItem[] {
+function loadCartItems(): ICartItem[] {
   const storedCart = localStorage.getItem(CART_STORAGE_KEY);
 
   if (storedCart == null) {
