@@ -121,10 +121,10 @@ export function Home() {
               <p>Hurry Up! Offers end In:</p>
 
               <div className="timer-boxes">
-                <div>40</div>
-                <div>16</div>
-                <div>56</div>
-                <div>30</div>
+                <div>40 days</div>
+                <div>16 hours</div>
+                <div>56 mins</div>
+                <div>30 secs</div>
               </div>
             </div>
           </div>
