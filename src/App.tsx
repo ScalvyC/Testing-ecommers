@@ -12,7 +12,6 @@ function App() {
   return (
     <ShoppingCartProvider>
       <Navbar />
-      <div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
@@ -21,7 +20,6 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      </div>
     </ShoppingCartProvider>
   );
 }

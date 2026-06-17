@@ -23,6 +23,7 @@ export function LoginBox() {
       .then((data) => {
         if (data.accessToken) {
           localStorage.setItem("accessToken", data.accessToken);
+          window.location.reload();
         } else {
           setLoginMessage("Invalid username or password");
         }
