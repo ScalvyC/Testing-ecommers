@@ -2,9 +2,46 @@ import { Button, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useShoppingCart } from "../context/shopping";
+import { useEffect, useState } from "react";
+
+type User = {
+  id: number;
+  username: string;
+  image: string;
+};
 
 export function Navbar() {
   const { cartItems, openCart } = useShoppingCart();
+
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      setUser(null);
+      return;
+    }
+
+    fetch("https://dummyjson.com/auth/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) {
+          setUser(data);
+        } else {
+          setUser(null);
+        }
+      })
+      .catch(() => {
+        setUser(null);
+      });
+  }, []);
+
   return (
     <NavbarBs sticky="top" className="navbar-main">
       <div className="row1">
@@ -39,9 +76,20 @@ export function Navbar() {
 
             <div className="login-register">
               <span className="normal-text">
-                <NavLink to="/login" className="nav-link-item">
-                  Log in
-                </NavLink>
+                {user ? (
+                  <div className="nav-user-profile">
+                    <img
+                      src={user.image}
+                      alt={user.username}
+                      className="nav-user-image"
+                    />
+                    <span className="nav-username">{user.username}</span>
+                  </div>
+                ) : (
+                  <NavLink to="/login" className="nav-link-item">
+                    Log in
+                  </NavLink>
+                )}
               </span>
               <span>|</span>
               <span className="normal-text">Register Now</span>

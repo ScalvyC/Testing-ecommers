@@ -58,7 +58,6 @@
   margin: 0;
 }
 
-
 .login-button {
   width: 100%;
   padding: 13px;
@@ -73,5 +72,12 @@
 
 .login-button:hover {
   background: #000000;
+}
+
+.message {
+  background-color: rgb(254, 243, 242);
+  outline: 1px solid #d92d20;
+  border-radius: 50px;
+  text-align: center;
 }
 

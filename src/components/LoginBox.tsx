@@ -4,8 +4,9 @@ import "./LoginBox.css";
 export function LoginBox() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loginMessage, setLoginMessage] = useState("");
 
-  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
+  function handleLogin(e) {
     e.preventDefault();
 
     fetch("https://dummyjson.com/auth/login", {
@@ -19,7 +20,13 @@ export function LoginBox() {
       credentials: "include",
     })
       .then((res) => res.json())
-      .then(console.log);
+      .then((data) => {
+        if (data.accessToken) {
+          localStorage.setItem("accessToken", data.accessToken);
+        } else {
+          setLoginMessage("Invalid username or password");
+        }
+      });
   }
 
   return (
@@ -27,6 +34,12 @@ export function LoginBox() {
       <div className="login-box">
         <h1>Welcome Back</h1>
         <p className="login-subtitle">Login to continue</p>
+
+        {loginMessage && (
+          <div className="message">
+            <p className="login-message">{loginMessage}</p>
+          </div>
+        )}
 
         <form onSubmit={handleLogin}>
           <div className="input-group">
@@ -55,11 +68,7 @@ export function LoginBox() {
 
           <div className="login-options">
             <div className="remember-me">
-              <input
-                type="checkbox"
-                id="remember-me"
-                name="rememberMe"
-              />
+              <input type="checkbox" id="remember-me" name="rememberMe" />
               <label htmlFor="remember-me">Remember Me</label>
             </div>
 
@@ -72,7 +81,6 @@ export function LoginBox() {
         </form>
 
         <hr />
-
       </div>
     </div>
   );
