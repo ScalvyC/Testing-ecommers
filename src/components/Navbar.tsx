@@ -38,7 +38,11 @@ export function Navbar() {
             <p>⏰ Open Time - 9:00 AM to 10:00PM</p>
 
             <div className="login-register">
-              <span className="normal-text">Log In</span>
+              <span className="normal-text">
+                <NavLink to="/login" className="nav-link-item">
+                  Log in
+                </NavLink>
+              </span>
               <span>|</span>
               <span className="normal-text">Register Now</span>
             </div>

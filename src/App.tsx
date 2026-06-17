@@ -6,6 +6,7 @@ import { About } from "./pages/About";
 import { Checkout } from "./pages/Checkout";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { Login } from "./pages/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="product/:id" element={<Product />} />
           <Route path="/about" element={<About />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </ShoppingCartProvider>
