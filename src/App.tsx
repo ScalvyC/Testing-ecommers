@@ -5,6 +5,7 @@ import { Product } from "./pages/Product";
 import { About } from "./pages/About";
 import { Checkout } from "./pages/Checkout";
 import { Navbar } from "./components/Navbar";
+import { NotFound } from "./pages/NotFound";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { Login } from "./pages/Login";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -27,6 +28,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </ShoppingCartProvider>
   );
