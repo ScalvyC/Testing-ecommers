@@ -1,12 +1,21 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./LoginBox.css";
+
+type LocationState = {
+  from?: string;
+};
 
 export function LoginBox() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
 
-  function handleLogin(e) {
+  const location = useLocation();
+  const state = location.state as LocationState | null;
+  const from = state?.from || "/";
+
+  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     fetch("https://dummyjson.com/auth/login", {
@@ -23,10 +32,16 @@ export function LoginBox() {
       .then((data) => {
         if (data.accessToken) {
           localStorage.setItem("accessToken", data.accessToken);
+          localStorage.setItem("userId", data.id);
+
           window.location.reload();
+          window.location.replace(from);
         } else {
           setLoginMessage("Invalid username or password");
         }
+      })
+      .catch(() => {
+        setLoginMessage("Something went wrong. Please try again.");
       });
   }
 

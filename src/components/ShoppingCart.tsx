@@ -48,7 +48,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
           </div>
           <div>
             {cartItems.length > 0 ? (
-              <NavLink to="/Checkout" className="checkout-btn">
+              <NavLink to="/checkout" className="checkout-btn">
                 Proceed to Checkout
               </NavLink>
             ) : (

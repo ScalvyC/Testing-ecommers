@@ -7,19 +7,27 @@ import { Checkout } from "./pages/Checkout";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { Login } from "./pages/Login";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 function App() {
   return (
     <ShoppingCartProvider>
       <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="product/:id" element={<Product />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="product/:id" element={<Product />} />
+        <Route path="/about" element={<About />} />
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </ShoppingCartProvider>
   );
 }
