@@ -1,5 +1,5 @@
-import { CartItem } from "../components/CartItem";
-import { useShoppingCart } from "../context/shopping";
+import { CartItem } from "../../components/Cart/CartItem";
+import { useShoppingCart } from "../../context/shopping";
 import "./Checkout.css";
 
 export function Checkout() {

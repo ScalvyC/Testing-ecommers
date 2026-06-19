@@ -1,4 +1,4 @@
-import { useShoppingCart } from "../context/shopping";
+import { useShoppingCart } from "../../context/shopping";
 import "./AddToCart.css";
 
 type AddToCartProps = {

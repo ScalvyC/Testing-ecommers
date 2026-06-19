@@ -1,11 +1,11 @@
 import "./Home.css";
 import { useEffect, useState } from "react";
-import { type Product, type Category } from "../constants/types";
+import { type Product, type Category } from "../../constants/types";
 import {
   useGetProductsQuery,
   useLazyGetProductQuery,
-} from "../services/dummyJsonApi";
-import { StoreItem } from "../components/StoreItem";
+} from "../../services/dummyJsonApi";
+import { StoreItem } from "../../components/Product/StoreItem";
 
 export function Home() {
   const { data: products = [] } = useGetProductsQuery(6);

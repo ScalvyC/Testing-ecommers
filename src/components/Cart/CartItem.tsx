@@ -1,6 +1,6 @@
-import { useGetProductQuery } from "../services/dummyJsonApi";
+import { useGetProductQuery } from "../../services/dummyJsonApi";
 import { AddToCart } from "./AddToCart";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { formatCurrency } from "../../utilities/formatCurrency";
 import "./CartItem.css";
 import { Link } from "react-router-dom";
 

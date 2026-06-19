@@ -1,11 +1,11 @@
 import { type ReactNode } from "react";
-import { ShoppingCart } from "../components/ShoppingCart";
+import { ShoppingCart } from "../components/Cart/ShoppingCart";
 import {
   closeCart as closeCartAction,
   decreaseCartQuantity as decreaseCartQuantityAction,
   increaseCartQuantity as increaseCartQuantityAction,
   openCart as openCartAction,
-  removeFromCart as removeFromCartAction
+  removeFromCart as removeFromCartAction,
 } from "../features/cart/cartSlice";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks";
 import { ShoppingCartContext } from "./shopping";
@@ -13,7 +13,6 @@ import { ShoppingCartContext } from "./shopping";
 type ShoppingCartProviderProps = {
   children: ReactNode;
 };
-
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import type { Product } from "../constants/types";
-import { useGetProductsByCategoryQuery } from "../services/dummyJsonApi";
+import type { Product } from "../../constants/types";
+import { useGetProductsByCategoryQuery } from "../../services/dummyJsonApi";
 import { Link } from "react-router-dom";
-import { AddToCart } from "./AddToCart";
+import { AddToCart } from "../Cart/AddToCart";
 
 import "./ProductItem.css";
 

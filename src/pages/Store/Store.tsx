@@ -1,6 +1,6 @@
 import "./Store.css";
-import { StoreItem } from "../components/StoreItem";
-import { useGetProductsQuery } from "../services/dummyJsonApi";
+import { StoreItem } from "../../components/Product/StoreItem";
+import { useGetProductsQuery } from "../../services/dummyJsonApi";
 
 export function Store() {
   const { data: products = [], error, isLoading } = useGetProductsQuery(0);

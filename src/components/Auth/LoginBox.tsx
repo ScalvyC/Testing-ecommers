@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useLoginMutation } from "../services/dummyJsonApi";
+import { useLoginMutation } from "../../services/dummyJsonApi";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,24 +33,24 @@ export function LoginBox() {
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-  try {
-    const result = await login({
-      username: data.username,
-      password: data.password,
-      expiresInMins: 30,
-    }).unwrap();
+    try {
+      const result = await login({
+        username: data.username,
+        password: data.password,
+        expiresInMins: 30,
+      }).unwrap();
 
-    localStorage.setItem("accessToken", result.accessToken);
-    localStorage.setItem("refreshToken", result.refreshToken);
-    localStorage.setItem("userId", String(result.id));
+      localStorage.setItem("accessToken", result.accessToken);
+      localStorage.setItem("refreshToken", result.refreshToken);
+      localStorage.setItem("userId", String(result.id));
 
-    window.location.replace(from);
-  } catch {
-    setError("root", {
-      message: "Invalid username or password",
-    });
-  }
-};
+      window.location.replace(from);
+    } catch {
+      setError("root", {
+        message: "Invalid username or password",
+      });
+    }
+  };
 
   return (
     <div className="login-page">

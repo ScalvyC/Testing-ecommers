@@ -1,9 +1,9 @@
 import { Card } from "react-bootstrap";
-import { formatCurrency } from "../utilities/formatCurrency";
-import type { Product } from "../constants/types";
+import { formatCurrency } from "../../utilities/formatCurrency";
+import type { Product } from "../../constants/types";
 import "./StoreItem.css";
 import { Link } from "react-router-dom";
-import { AddToCart } from "./AddToCart";
+import { AddToCart } from "../Cart/AddToCart";
 
 type StoreItemProps = Product;
 
