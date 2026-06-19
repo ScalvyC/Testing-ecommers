@@ -1,46 +1,31 @@
+import { useState } from "react";
 import { Button, Navbar as NavbarBs } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useShoppingCart } from "../context/shopping";
-import { useEffect, useState } from "react";
-
-type User = {
-  id: number;
-  username: string;
-  image: string;
-};
+import { useGetCurrentAuthUserQuery } from "../services/dummyJsonApi";
 
 export function Navbar() {
   const { cartItems, openCart } = useShoppingCart();
+  const navigate = useNavigate();
 
-  const [user, setUser] = useState<User | null>(null);
+  const [hasToken, setHasToken] = useState(
+    Boolean(localStorage.getItem("accessToken")),
+  );
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
+  const { data: user } = useGetCurrentAuthUserQuery(undefined, {
+    skip: !hasToken,
+  });
 
-    if (!token) {
-      setUser(null);
-      return;
-    }
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userId");
 
-    fetch("https://dummyjson.com/auth/me", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.username) {
-          setUser(data);
-        } else {
-          setUser(null);
-        }
-      })
-      .catch(() => {
-        setUser(null);
-      });
-  }, []);
+    setHasToken(false);
+  };
+
+  const loggedInUser = hasToken ? user : null;
 
   return (
     <NavbarBs sticky="top" className="navbar-main">
@@ -76,14 +61,16 @@ export function Navbar() {
 
             <div className="login-register">
               <span className="normal-text">
-                {user ? (
+                {loggedInUser ? (
                   <div className="nav-user-profile">
                     <img
-                      src={user.image}
-                      alt={user.username}
+                      src={loggedInUser.image}
+                      alt={loggedInUser.username}
                       className="nav-user-image"
                     />
-                    <span className="nav-username">{user.username}</span>
+                    <span className="nav-username">
+                      {loggedInUser.username}
+                    </span>
                   </div>
                 ) : (
                   <NavLink to="/login" className="nav-link-item">
@@ -91,12 +78,25 @@ export function Navbar() {
                   </NavLink>
                 )}
               </span>
+
               <span>|</span>
-              <span className="normal-text">Register Now</span>
+
+              <span className="normal-text">
+                {loggedInUser ? (
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="logout-button"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <span>Register Now</span>
+                )}
+              </span>
             </div>
           </div>
 
-          {/* COLUMN 3, SECTION 2 */}
           <div className="row1-column3-section2">
             <div className="right-nav-text">
               <span className="normal-text">Accessories</span>

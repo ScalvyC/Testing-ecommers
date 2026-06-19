@@ -1,49 +1,56 @@
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useLoginMutation } from "../services/dummyJsonApi";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import "./LoginBox.css";
+
+const schema = z.object({
+  username: z.string().min(1, "Username is required"),
+  password: z.string().min(1, "Password is required"),
+});
+
+type FormFields = z.infer<typeof schema>;
 
 type LocationState = {
   from?: string;
 };
 
 export function LoginBox() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginMessage, setLoginMessage] = useState("");
+  const [login, { isLoading }] = useLoginMutation();
 
   const location = useLocation();
   const state = location.state as LocationState | null;
   const from = state?.from || "/";
 
-  function handleLogin(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<FormFields>({
+    resolver: zodResolver(schema),
+  });
 
-    fetch("https://dummyjson.com/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-        expiresInMins: 30,
-      }),
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.accessToken) {
-          localStorage.setItem("accessToken", data.accessToken);
-          localStorage.setItem("userId", data.id);
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  try {
+    const result = await login({
+      username: data.username,
+      password: data.password,
+      expiresInMins: 30,
+    }).unwrap();
 
-          window.location.reload();
-          window.location.replace(from);
-        } else {
-          setLoginMessage("Invalid username or password");
-        }
-      })
-      .catch(() => {
-        setLoginMessage("Something went wrong. Please try again.");
-      });
+    localStorage.setItem("accessToken", result.accessToken);
+    localStorage.setItem("refreshToken", result.refreshToken);
+    localStorage.setItem("userId", String(result.id));
+
+    window.location.replace(from);
+  } catch {
+    setError("root", {
+      message: "Invalid username or password",
+    });
   }
+};
 
   return (
     <div className="login-page">
@@ -51,35 +58,39 @@ export function LoginBox() {
         <h1>Welcome Back</h1>
         <p className="login-subtitle">Login to continue</p>
 
-        {loginMessage && (
+        {errors.root && (
           <div className="message">
-            <p className="login-message">{loginMessage}</p>
+            <p className="login-message">{errors.root.message}</p>
           </div>
         )}
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="input-group">
             <label htmlFor="username">Username</label>
             <input
+              {...register("username")}
               type="text"
               id="username"
-              name="username"
-              value={username}
               placeholder="Enter your username"
-              onChange={(e) => setUsername(e.target.value)}
             />
+
+            {errors.username && (
+              <div className="error-message">{errors.username.message}</div>
+            )}
           </div>
 
           <div className="input-group">
             <label htmlFor="password">Password</label>
             <input
+              {...register("password")}
               type="password"
               id="password"
-              name="password"
-              value={password}
               placeholder="Enter your password"
-              onChange={(e) => setPassword(e.target.value)}
             />
+
+            {errors.password && (
+              <div className="error-message">{errors.password.message}</div>
+            )}
           </div>
 
           <div className="login-options">
@@ -91,8 +102,14 @@ export function LoginBox() {
             <p className="forgot-password">Forgot Password?</p>
           </div>
 
-          <button type="submit" className="login-button">
-            Login
+          <button
+            disabled={isLoading}
+            type="submit"
+            className={
+              isLoading ? "login-button-disabled" : "login-button-enabled"
+            }
+          >
+            {isLoading ? "Loading..." : "Login"}
           </button>
         </form>
 
