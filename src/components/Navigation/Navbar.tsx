@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Button, Navbar as NavbarBs } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useShoppingCart } from "../../context/shopping";
 import { useGetCurrentAuthUserQuery } from "../../services/dummyJsonApi";
 
 export function Navbar() {
   const { cartItems, openCart } = useShoppingCart();
-  const navigate = useNavigate();
 
   const [hasToken, setHasToken] = useState(
     Boolean(localStorage.getItem("accessToken")),
