@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useLoginMutation } from "../../services/dummyJsonApi";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import "./LoginBox.css";
 
@@ -16,7 +17,7 @@ type LocationState = {
   from?: string;
 };
 
-export function LoginBox() {
+export const LoginBox = () => {
   const [login, { isLoading }] = useLoginMutation();
 
   const location = useLocation();
@@ -75,7 +76,9 @@ export function LoginBox() {
             />
 
             {errors.username && (
-              <div className="error-message">{errors.username.message}</div>
+              <div className="text-red-600 text-base">
+                {errors.username.message}
+              </div>
             )}
           </div>
 
@@ -117,4 +120,4 @@ export function LoginBox() {
       </div>
     </div>
   );
-}
+};
