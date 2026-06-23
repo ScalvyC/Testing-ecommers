@@ -1,10 +1,8 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../services/dummyJsonApi";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
-
 import { zodResolver } from "@hookform/resolvers/zod";
-import "./LoginBox.css";
 
 const schema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -21,6 +19,8 @@ export const LoginBox = () => {
   const [login, { isLoading }] = useLoginMutation();
 
   const location = useLocation();
+  const navigate = useNavigate();
+
   const state = location.state as LocationState | null;
   const from = state?.from || "/";
 
@@ -45,7 +45,7 @@ export const LoginBox = () => {
       localStorage.setItem("refreshToken", result.refreshToken);
       localStorage.setItem("userId", String(result.id));
 
-      window.location.replace(from);
+      navigate(from, { replace: true });
     } catch {
       setError("root", {
         message: "Invalid username or password",
@@ -54,69 +54,101 @@ export const LoginBox = () => {
   };
 
   return (
-    <div className="login-page">
-      <div className="login-box">
-        <h1>Welcome Back</h1>
-        <p className="login-subtitle">Login to continue</p>
+    <div>
+      <div className="w-full max-w-[380px] rounded-xl bg-white p-[35px] shadow-lg">
+        <h1 className="m-0 text-center text-[30px] font-bold text-[#1f2937]">
+          Welcome Back
+        </h1>
+
+        <p className="mb-[30px] text-center text-[#6b7280]">
+          Login to continue
+        </p>
 
         {errors.root && (
-          <div className="message">
-            <p className="login-message">{errors.root.message}</p>
+          <div className="mb-5 rounded-xl border border-red-500 bg-red-50 p-3 text-center text-sm text-red-600">
+            {errors.root.message}
           </div>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="input-group">
-            <label htmlFor="username">Username</label>
+          <div className="mb-[18px] flex flex-col">
+            <label
+              className="mb-[7px] text-sm font-semibold text-[#374151]"
+              htmlFor="username"
+            >
+              Username
+            </label>
+
             <input
               {...register("username")}
               type="text"
               id="username"
               placeholder="Enter your username"
+              className={`rounded-[10px] border px-[14px] py-3 text-[15px] outline-none transition focus:ring-2 focus:ring-yellow-400 ${
+                errors.username ? "border-red-500" : "border-gray-300"
+              }`}
             />
 
             {errors.username && (
-              <div className="text-red-600 text-base">
+              <p className="mt-1 text-sm text-red-600">
                 {errors.username.message}
-              </div>
+              </p>
             )}
           </div>
 
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
+          <div className="mb-[18px] flex flex-col">
+            <label
+              className="mb-[7px] text-sm font-semibold text-[#374151]"
+              htmlFor="password"
+            >
+              Password
+            </label>
+
             <input
               {...register("password")}
               type="password"
               id="password"
               placeholder="Enter your password"
+              className={`rounded-[10px] border px-[14px] py-3 text-[15px] outline-none transition focus:ring-2 focus:ring-yellow-400 ${
+                errors.password ? "border-red-500" : "border-gray-300"
+              }`}
             />
 
             {errors.password && (
-              <div className="error-message">{errors.password.message}</div>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
-          <div className="login-options">
-            <div className="remember-me">
-              <input type="checkbox" id="remember-me" name="rememberMe" />
-              <label htmlFor="remember-me">Remember Me</label>
-            </div>
+          <div className="mb-[22px] flex items-center justify-between text-sm">
+            <label className="flex items-center gap-2 text-gray-700">
+              <input
+                type="checkbox"
+                id="remember-me"
+                className="h-4 w-4 accent-yellow-500"
+              />
+              Remember Me
+            </label>
 
-            <p className="forgot-password">Forgot Password?</p>
+            <button
+              type="button"
+              className="cursor-pointer text-yellow-500 transition hover:text-black"
+            >
+              Forgot Password?
+            </button>
           </div>
 
           <button
             disabled={isLoading}
             type="submit"
-            className={
-              isLoading ? "login-button-disabled" : "login-button-enabled"
-            }
+            className="w-full rounded-[10px] bg-yellow-500 p-[13px] text-base font-semibold text-white transition hover:bg-black disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-300"
           >
             {isLoading ? "Loading..." : "Login"}
           </button>
         </form>
 
-        <hr />
+        <hr className="mt-7 border-gray-200" />
       </div>
     </div>
   );

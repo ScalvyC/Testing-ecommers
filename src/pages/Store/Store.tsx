@@ -27,7 +27,7 @@ export function Store() {
     <div className="store-page">
       <div className="store-container">
         <div className="store-header">
-          <h1>Store</h1>
+          <h1 className="text-center">Store</h1>
           <p>Explore our latest products and deals</p>
         </div>
 
