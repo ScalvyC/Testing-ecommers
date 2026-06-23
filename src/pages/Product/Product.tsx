@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useGetProductQuery } from "../services/dummyJsonApi";
-import { ProductItem } from "../components/ProductItem";
+import { useGetProductQuery } from "../../services/dummyJsonApi";
+import { ProductItem } from "../../components/Product/ProductItem";
 import "./Product.css";
 
 export function Product() {

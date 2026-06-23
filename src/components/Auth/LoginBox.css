@@ -1,0 +1,98 @@
+.login-box {
+  width: 380px;
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+}
+
+.login-box h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+  color: #1f2937;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.input-group label {
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.input-group input {
+  padding: 12px 14px;
+  border: 1px solid;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.forgot-password {
+  color: rgb(248, 180, 0);
+  cursor: pointer;
+  margin: 0;
+}
+
+.login-button-enabled {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: rgb(248, 180, 0);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-button-disabled {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: rgb(73, 70, 60);
+  color: rgb(156, 151, 151);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: not-allowed;
+}
+
+.login-button:hover {
+  background: #000000;
+}
+
+.message {
+  background-color: rgb(254, 243, 242);
+  outline: 1px solid #d92d20;
+  border-radius: 50px;
+  text-align: center;
+}
+
+.error-message {
+  color: red;
+}

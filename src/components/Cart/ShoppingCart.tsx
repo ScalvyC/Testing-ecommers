@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Offcanvas, Stack } from "react-bootstrap";
 import { CartItem } from "./CartItem";
-import { formatCurrency } from "../utilities/formatCurrency";
-import type { Product } from "../constants/types";
+import { formatCurrency } from "../../utilities/formatCurrency";
+import type { Product } from "../../constants/types";
 import { NavLink } from "react-router-dom";
 import "./ShopppingCart.css";
-import { useShoppingCart } from "../context/shopping";
+import { useShoppingCart } from "../../context/shopping";
 
 type ShoppingCartProps = {
   isOpen: boolean;
@@ -48,7 +48,7 @@ export function ShoppingCart({ isOpen }: ShoppingCartProps) {
           </div>
           <div>
             {cartItems.length > 0 ? (
-              <NavLink to="/Checkout" className="checkout-btn">
+              <NavLink to="/checkout" className="checkout-btn">
                 Proceed to Checkout
               </NavLink>
             ) : (

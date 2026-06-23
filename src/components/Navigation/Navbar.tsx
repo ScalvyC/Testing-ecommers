@@ -1,10 +1,31 @@
+import { useState } from "react";
 import { Button, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
-import { useShoppingCart } from "../context/shopping";
+import { useShoppingCart } from "../../context/shopping";
+import { useGetCurrentAuthUserQuery } from "../../services/dummyJsonApi";
 
 export function Navbar() {
   const { cartItems, openCart } = useShoppingCart();
+
+  const [hasToken, setHasToken] = useState(
+    Boolean(localStorage.getItem("accessToken")),
+  );
+
+  const { data: user } = useGetCurrentAuthUserQuery(undefined, {
+    skip: !hasToken,
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("userId");
+
+    setHasToken(false);
+  };
+
+  const loggedInUser = hasToken ? user : null;
+
   return (
     <NavbarBs sticky="top" className="navbar-main">
       <div className="row1">
@@ -38,13 +59,43 @@ export function Navbar() {
             <p>⏰ Open Time - 9:00 AM to 10:00PM</p>
 
             <div className="login-register">
-              <span className="normal-text">Log In</span>
+              <span className="normal-text">
+                {loggedInUser ? (
+                  <div className="nav-user-profile">
+                    <img
+                      src={loggedInUser.image}
+                      alt={loggedInUser.username}
+                      className="nav-user-image"
+                    />
+                    <span className="nav-username">
+                      {loggedInUser.username}
+                    </span>
+                  </div>
+                ) : (
+                  <NavLink to="/login" className="nav-link-item">
+                    Log in
+                  </NavLink>
+                )}
+              </span>
+
               <span>|</span>
-              <span className="normal-text">Register Now</span>
+
+              <span className="normal-text">
+                {loggedInUser ? (
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="logout-button"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <span>Register Now</span>
+                )}
+              </span>
             </div>
           </div>
 
-          {/* COLUMN 3, SECTION 2 */}
           <div className="row1-column3-section2">
             <div className="right-nav-text">
               <span className="normal-text">Accessories</span>
